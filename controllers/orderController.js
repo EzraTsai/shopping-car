@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const crypto = require("crypto")
 const nodemailer = require('nodemailer')
 const db = require('../models')
@@ -8,15 +10,15 @@ const Cart = db.Cart
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'process.env.GMAIL_USER',
-        pass: 'process.env.GMAIL_PASS',
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
     },
 })
 
-const URL = ''
-const MerchantID = ''
-const HashKey = ''
-const HashIV = ''
+const URL = process.env.URL
+const MerchantID = process.env.MERCHANT_ID
+const HashKey = process.env.HASH_KEY
+const HashIV = process.env.HASH_IV
 const PayGateWay = "https://ccore.spgateway.com/MPG/mpg_gateway"
 const ReturnURL = URL + "/spgateway/callback?from=ReturnURL"
 const NotifyURL = URL + "/spgateway/callback?from=NotifyURL"
@@ -133,8 +135,8 @@ let orderController = {
                 }
 
                 var mailOptions = {
-                    from: 'process.env.GMAIL_USER',
-                    to: 'process.env.BUYER_GMAIL',
+                    from: process.env.GMAIL_USER,
+                    to: 'ishow8166@icloud.com',
                     subject: `${order.id} 訂單成立`,
                     text: `${order.id} 訂單成立`,
                 }
