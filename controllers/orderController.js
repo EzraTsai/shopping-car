@@ -7,8 +7,8 @@ const Cart = db.Cart
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: '',
-        pass: '',
+        user: 'process.env.GMAIL_USER',
+        pass: 'process.env.GMAIL_PASS',
     },
 })
 
@@ -44,8 +44,8 @@ let orderController = {
                 }
 
                 var mailOptions = {
-                    from: '',
-                    to: '',
+                    from: 'process.env.GMAIL_USER',
+                    to: 'process.env.BUYER_GMAIL',
                     subject: `${order.id} 訂單成立`,
                     text: `${order.id} 訂單成立`,
                 }
